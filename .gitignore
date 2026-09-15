@@ -1,0 +1,29 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+medias/photos-retouchees/
+medias/sources-marque/
+tmp/
+.sites-runtime/
+node_modules/
+
+# Fichiers sensibles et sorties locales
+config.php
+*.env
+secrets*
+credentials.json
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+*.pem
+*.key
+*.p12
+*.pgp
+id_rsa*
+build/
+*.zip
+__pycache__/
+*.pyc
+# dist/ contient ici le code source statique et les médias web : il est versionné.
+!.github/workflows/secrets-check.yml
