@@ -6,7 +6,8 @@ Dossier du site Coppey Bois de feu, constitué le 15 septembre 2026.
 
 - Aperçu local : http://127.0.0.1:8816/
 - Site statique : `dist/` (cinq pages et une page 404).
-- Domaine confirmé : `coppeyboisdefeu.ch`. Aucune publication effectuée.
+- Version de présentation publiée sur GitHub Pages : https://geeruoss.github.io/coppey-bois-de-feu/
+- Domaine prévu : `coppeyboisdefeu.ch`, pas encore raccordé.
 - Étude SEO et concurrence : `docs/etude-seo.md`.
 - Questions prêtes à transmettre au client : `docs/questions-client.md`.
 - État détaillé, contrôles et points à confirmer : `docs/etat-du-site.md`.
@@ -48,4 +49,4 @@ python3 scripts/generate-pages.py
 python3 -m http.server 8816 --bind 127.0.0.1 --directory dist
 ```
 
-Le générateur reprend l’en-tête et le pied de page de l’accueil pour les pages secondaires. La bulle WhatsApp et le calculateur de stères sont inclus. Les pages restent en `noindex,nofollow` pendant la préparation ; un push GitHub ne publie pas le site.
+Le générateur reprend l’en-tête et le pied de page de l’accueil pour les pages secondaires. La bulle WhatsApp et le calculateur de stères sont inclus. La version GitHub Pages reste en `noindex,nofollow` pendant la préparation du domaine métier. Chaque push sur `main` publie automatiquement le contenu de `dist/`, après adaptation des chemins par `scripts/build-pages.py`. Les documents de travail et médias originaux ne font pas partie du site publié.

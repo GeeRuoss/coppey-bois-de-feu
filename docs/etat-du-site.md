@@ -28,7 +28,7 @@
 1. Stolzl : identifiée dans le PDF et disponible officiellement sur Adobe Fonts. Le navigateur attend la connexion de Guillermo afin de créer le projet web. CSS préparée pour Stolzl ; police de secours temporaire tant que l’intégration officielle n’est pas obtenue. Voir police-stolzl.md pour les sources et conditions web.
 2. Compléter les réponses client : produits, essences, état du bois, prix, unités, stock, zone réelle de livraison, accès et modalités. Les formats visibles dans le formulaire sont des souhaits, pas un catalogue confirmé.
 3. Confirmer identité légale et adresse, activation du numéro WhatsApp, éventuelle fiche Google, conditions de la prestation et mentions de l’hébergeur choisi.
-4. Valider le site concret et sa destination avant toute publication. L’aperçu reste local et les pages sont volontairement en noindex, nofollow. Retirer ces directives uniquement lors de la publication autorisée, puis vérifier domaine, HTTPS et statuts. Le sitemap n’a pas été soumis.
+4. Publication GitHub Pages autorisée le 15 septembre 2026, dépôt désormais public. Version de présentation : https://geeruoss.github.io/coppey-bois-de-feu/. Domaine métier à raccorder ultérieurement. Le miroir de présentation reste en noindex,nofollow ; les canoniques du domaine métier sont conservées. Le sitemap n’a pas été soumis.
 
 ## Fichiers de livraison
 
