@@ -28,3 +28,7 @@ Contrôles fonctionnels : demande WhatsApp et calculateur conservés, prérempli
 Animations : révélation au défilement, accès au lien par le clavier, préférence de mouvement réduit au chargement et modifiée en cours de visite, visibilité sans JavaScript. Les blocs déjà visibles au chargement et le formulaire ne sont pas masqués. Impression avec contenu visible.
 
 Mesure mobile locale dans les mêmes conditions de laboratoire : accueil LCP 2,87 s, CLS 0, environ 515 ko transférés ; formats LCP 0,97 s, CLS 0, environ 136 ko. Aucune bibliothèque d’animation ajoutée.
+
+## Dernières finitions : façonnage, séchage et photos
+
+24 contrôles ciblés sur accueil, bois, livraison et façonnage aux largeurs 320, 390, 768, 1023, 1024 et 1440 px. Pas de débordement ni erreur JavaScript observée. Menu compact, lien unique vers le façonnage, retour au menu bureau lors du redimensionnement et ouverture du formulaire en mode intervention vérifiés. Captures mobile/bureau inspectées pour les trois nouvelles photos, le bloc séchage et le menu. Chemins des variantes d’images et build GitHub Pages vérifiés.

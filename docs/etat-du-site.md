@@ -16,6 +16,12 @@ Mise à jour du 25 septembre 2026. Publication : https://geeruoss.github.io/copp
 - Le bouton WhatsApp flottant affiche uniquement l’icône blanche sur un fond vert #128c45, avec contour blanc et ombre. Taille : 68 px sur ordinateur, 64 px sur mobile. Le rendu est vérifié à 320, 390 et 1440 px ; l’invitation après 5 secondes reste présente. Le widget se masque pendant la saisie, le menu et lorsque le formulaire principal occupe l’écran.
 - L’image de partage reprend la nouvelle couverture, avec une URL publique propre au miroir GitHub Pages.
 
+## Dernières finitions
+
+- Façonnage sur place ajouté au menu principal, avec une seule entrée dans le menu mobile. Le menu compact prend le relais jusqu’à 1023 px.
+- Chiffres du séchage sans tirets : 9 à 10 mois et 15 à 20 %, avec mise en page verticale sur téléphone.
+- Trois nouvelles photos personnelles : cernes, bûche fendue et vue du dépôt. Sélection détaillée dans selection-photos.md.
+
 ## Vérifications
 
 - Les neuf pages contrôlées à 320, 390, 768, 1024 et 1440 px : pas de débordement horizontal, un seul H1, aucune image chargée manquante et aucune erreur JavaScript observée.

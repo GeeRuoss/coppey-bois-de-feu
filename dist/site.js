@@ -30,7 +30,7 @@ document.addEventListener('keydown', event => {
   }
 });
 menu?.querySelectorAll('a').forEach(link => link.addEventListener('click',closeMenu));
-matchMedia('(min-width:768px)').addEventListener('change', event => {if(event.matches)closeMenu();});
+matchMedia('(min-width:1024px)').addEventListener('change', event => {if(event.matches)closeMenu();});
 const formats = new Map((config.formats || []).map(format=>[format.id,format]));
 const woods = new Map((config.wood || []).map(wood=>[wood.id,wood]));
 function estimateSteres(dimensions, format) {
