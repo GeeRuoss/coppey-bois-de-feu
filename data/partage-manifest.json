@@ -1,0 +1,34 @@
+{
+  "accueil": {
+    "file": "partage-accueil-85da2a5d6af4.jpg",
+    "alt": "Coppey Bois de feu : du bon bois, du beau feu. Photo des bûches au dépôt.",
+    "width": 1200,
+    "height": 630,
+    "sourceDigest": "bb42e84b93dc72f12ee5ff7943e721d79bc869a5632f1c2ee3600635c2b1f242",
+    "sha256": "85da2a5d6af4aa5c27984d6b8e07d95b77dcfcaf29827019bc0f4c6a8f79fbdf"
+  },
+  "livraison": {
+    "file": "partage-livraison-7fa01093617e.jpg",
+    "alt": "Coppey Bois de feu : livraison sur demande. Bigbags au dépôt.",
+    "width": 1200,
+    "height": 630,
+    "sourceDigest": "ab38ad6ecc861f05ee466fd7a725fde876d3f4373e43cf2bd96a9b675fa6d4f4",
+    "sha256": "7fa01093617e17d2b35eb644a6c47ea2aeef717de35116b41cfd7b0539fb0588"
+  },
+  "formats": {
+    "file": "partage-formats-a34b5c2bae62.jpg",
+    "alt": "Coppey Bois de feu : formats de 25, 33 et 50 cm, calculateur de stères.",
+    "width": 1200,
+    "height": 630,
+    "sourceDigest": "7bbf24f7b47959ab147e849904a3894705340d991f914e4f47d8213205e0fa17",
+    "sha256": "a34b5c2bae62823249af7b8998907693586dadb913920fb92593ee936c88dd04"
+  },
+  "faconnage": {
+    "file": "partage-faconnage-936d7078cb30.jpg",
+    "alt": "Coppey : façonnage sur place avec la machine et mise en bigbags.",
+    "width": 1200,
+    "height": 630,
+    "sourceDigest": "bcbb567ab4a655f94127a130bcd084b611d24c48be21d990be9db0911734f7eb",
+    "sha256": "936d7078cb30eb50fd944fcd18d3de529b4b5cdd1d47dbe7dd4458fb6870356d"
+  }
+}

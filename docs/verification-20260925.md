@@ -32,3 +32,9 @@ Mesure mobile locale dans les mêmes conditions de laboratoire : accueil LCP 2,8
 ## Dernières finitions : façonnage, séchage et photos
 
 24 contrôles ciblés sur accueil, bois, livraison et façonnage aux largeurs 320, 390, 768, 1023, 1024 et 1440 px. Pas de débordement ni erreur JavaScript observée. Menu compact, lien unique vers le façonnage, retour au menu bureau lors du redimensionnement et ouverture du formulaire en mode intervention vérifiés. Captures mobile/bureau inspectées pour les trois nouvelles photos, le bloc séchage et le menu. Chemins des variantes d’images et build GitHub Pages vérifiés.
+
+## Partage et simplification éditoriale
+
+Quatre cartes JPEG 1200 × 630 inspectées en grand et en vignette, avec noms issus de leur contenu. Métadonnées initiales, correspondances des routes et URLs du build vérifiées. Contrôle de synchronisation des sources intégré au build. Le rendu natif dans une conversation WhatsApp et son cache ne sont pas observés directement.
+
+27 contrôles de pages/largeurs pour les textes raccourcis : neuf pages à 320, 390 et 1440 px. Formulaire, préremplissage, calculateur, menu et bulle testés sans envoyer de message réel.

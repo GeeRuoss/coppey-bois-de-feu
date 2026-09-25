@@ -2,9 +2,10 @@
 from pathlib import Path
 from html.parser import HTMLParser
 from urllib.parse import urlsplit
-import shutil
+import shutil, runpy
 
 root = Path(__file__).resolve().parents[1]
+runpy.run_path(str(root/'scripts/check-sharing.py'),run_name='__main__')
 source = root / 'dist'
 target = root / 'build' / 'github-pages'
 prefix = '/coppey-bois-de-feu'
@@ -20,6 +21,7 @@ for path in target.rglob('*'):
     # L’image sociale doit être accessible depuis le miroir publié.
     text = text.replace('https://coppeyboisdefeu.ch/assets/partage-', 'https://geeruoss.github.io'+prefix+'/assets/partage-')
     text = text.replace(', /assets/', ', ' + prefix + '/assets/').replace(',/assets/', ',' + prefix + '/assets/')
+    text = text.replace('property="og:url" content="https://coppeyboisdefeu.ch/', 'property="og:url" content="https://geeruoss.github.io'+prefix+'/')
     path.write_text(text)
 (target / '.nojekyll').touch()
 

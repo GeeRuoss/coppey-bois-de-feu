@@ -1,0 +1,46 @@
+{
+  "cards": {
+    "accueil": {
+      "headline": [
+        "Du bon bois.",
+        "Du beau feu."
+      ],
+      "caption": "Bois sec au stère",
+      "image": "@home_hero",
+      "alt": "Coppey Bois de feu : du bon bois, du beau feu. Photo des bûches au dépôt."
+    },
+    "livraison": {
+      "headline": [
+        "Votre bois.",
+        "À votre adresse."
+      ],
+      "caption": "Livraison sur demande",
+      "image": "bois-depot",
+      "alt": "Coppey Bois de feu : livraison sur demande. Bigbags au dépôt."
+    },
+    "formats": {
+      "headline": [
+        "Vos bûches.",
+        "Vos stères."
+      ],
+      "caption": "Estimez votre quantité",
+      "image": null,
+      "alt": "Coppey Bois de feu : formats de 25, 33 et 50 cm, calculateur de stères."
+    },
+    "faconnage": {
+      "headline": [
+        "Votre bois.",
+        "Notre machine."
+      ],
+      "caption": "Façonnage sur place",
+      "image": "bois-machine",
+      "alt": "Coppey : façonnage sur place avec la machine et mise en bigbags."
+    }
+  },
+  "routes": {
+    "": "accueil",
+    "livraison": "livraison",
+    "steres-et-formats": "formats",
+    "travail-a-facon": "faconnage"
+  }
+}

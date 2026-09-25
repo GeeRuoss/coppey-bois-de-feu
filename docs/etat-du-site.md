@@ -22,6 +22,10 @@ Mise à jour du 25 septembre 2026. Publication : https://geeruoss.github.io/copp
 - Chiffres du séchage sans tirets : 9 à 10 mois et 15 à 20 %, avec mise en page verticale sur téléphone.
 - Trois nouvelles photos personnelles : cernes, bûche fendue et vue du dépôt. Sélection détaillée dans selection-photos.md.
 
+## Partage et simplification
+
+Quatre cartes sociales avec le vrai logo : accueil, livraison, formats et façonnage. Sources centralisées et contrôlées au build ; nouveaux noms de fichiers liés au contenu. Réduction de 234 mots redondants dans les huit pages commerciales, sans retirer les conditions utiles à la demande. Voir partage-whatsapp.md.
+
 ## Vérifications
 
 - Les neuf pages contrôlées à 320, 390, 768, 1024 et 1440 px : pas de débordement horizontal, un seul H1, aucune image chargée manquante et aucune erreur JavaScript observée.

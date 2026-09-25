@@ -10,6 +10,7 @@ Dossier du site Coppey Bois de feu, constitué le 15 septembre 2026.
 - Domaine prévu : `coppeyboisdefeu.ch`, pas encore raccordé.
 - Étude SEO et concurrence : `docs/etude-seo.md`.
 - Réponses client et derniers détails à préciser : `docs/questions-client.md`.
+- Cartes de partage WhatsApp : `docs/partage-whatsapp.md`.
 - État détaillé, contrôles et points à confirmer : `docs/etat-du-site.md`.
 
 La vraie identité des bâches est conservée. Le logo, son lettrage, les bûches et le veinage sont extraits en SVG. Stolzl est identifiée et son intégration officielle Adobe Fonts attend la connexion au compte ; une police de secours s’affiche en attendant.
