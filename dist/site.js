@@ -191,3 +191,32 @@ if (contactWidget) {
   syncContactVisibility();
   if (!alreadySeen) invitationTimer = setTimeout(invite, 5000);
 }
+
+// Le contenu reste visible sans JavaScript et avec la réduction des mouvements.
+(() => {
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  if (reducedMotion.matches || !('IntersectionObserver' in window)) return;
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.remove('is-pending');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {rootMargin:'0px 0px -24px 0px', threshold:0});
+  const candidates = document.querySelectorAll('.section-heading,.family-card,.story>div,.size-card,.wood-profile>div,.feature-note,.service-pair article,.order-steps li,.closing>div,.work-callout');
+  candidates.forEach(element => {
+    if (element.getBoundingClientRect().top < innerHeight || element.contains(document.activeElement)) return;
+    element.classList.add('reveal-on-scroll','is-pending');
+    observer.observe(element);
+  });
+  document.addEventListener('focusin', event => {
+    const element = event.target.closest('.is-pending');
+    if (element) {element.classList.remove('is-pending');observer.unobserve(element);}
+  });
+  reducedMotion.addEventListener('change', event => {
+    if (!event.matches) return;
+    observer.disconnect();
+    candidates.forEach(element => element.classList.remove('is-pending'));
+  });
+})();

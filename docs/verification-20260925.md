@@ -18,3 +18,13 @@ Mesures avec Chrome headless : écran 390 × 844, DPR 2, processeur ralenti ×4,
 La couverture mobile a été allégée et une taille intermédiaire de 800 px ajoutée. Le premier essai de l’accueil donnait 6,23 s : le poids des images constituait le principal ralentissement. Les originaux du client sont conservés.
 
 Le build GitHub Pages vérifie les références des pages et images, y compris les srcset. JavaScript et diff contrôlés. Le miroir reste non indexable jusqu’au raccordement du domaine métier.
+
+## Renforcement de la structure et animations
+
+45 contrôles de mise en page après ajout des titres gras, du fond de navigation et des parcours illustrés : neuf pages à 320, 390, 768, 1024 et 1440 px, sans débordement, image chargée manquante ni erreur JavaScript. Captures inspectées de l’accueil, livraison, familles, formats, formulaire, étapes de commande et sections finales sur mobile et bureau ; navigation à 768 px.
+
+Contrôles fonctionnels : demande WhatsApp et calculateur conservés, préremplissage depuis les pages de bois, menu mobile et bulle. Les nouveaux accès de demande pointent vers le formulaire existant ; prix et disponibilité sont confirmés par Coppey. Aucun paiement ni commande automatique ajouté.
+
+Animations : révélation au défilement, accès au lien par le clavier, préférence de mouvement réduit au chargement et modifiée en cours de visite, visibilité sans JavaScript. Les blocs déjà visibles au chargement et le formulaire ne sont pas masqués. Impression avec contenu visible.
+
+Mesure mobile locale dans les mêmes conditions de laboratoire : accueil LCP 2,87 s, CLS 0, environ 515 ko transférés ; formats LCP 0,97 s, CLS 0, environ 136 ko. Aucune bibliothèque d’animation ajoutée.

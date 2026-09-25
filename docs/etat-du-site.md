@@ -5,6 +5,8 @@ Mise à jour du 25 septembre 2026. Publication : https://geeruoss.github.io/copp
 ## Livraison
 
 - Neuf pages : accueil, bois, feuillus, résineux, stères et formats, livraison, façonnage sur place, demande WhatsApp, confidentialité ; page 404 dédiée.
+- Titres renforcés en gras, navigation sur fond crème distinct, cartes des essences mieux séparées et boutons de demande dès le début des pages commerciales. Parcours visuel bois/adresse/confirmation sur l’accueil et la livraison, avec icônes SVG cohérentes.
+- Animations légères à l’entrée des sections dans le viewport. Le contenu reste visible sans JavaScript et lorsque la réduction des mouvements est active ; l’accès au clavier révèle immédiatement le bloc concerné.
 - Identité SVG extraite des bâches conservée. Brun #3f3625 et crème #c7a987, fond clair #f6f2eb pour renforcer le contraste. Navigation et boutons plus visibles.
 - Nouvelle sélection parmi les photos du client, dont IMG_4455 en couverture avec cadrage spécifique au téléphone. Exports WebP responsifs, originaux intacts. Voir selection-photos.md.
 - Informations transmises le 25 septembre intégrées : essences et origines, formats, grosses bûches réservées aux feuillus, séchage, humidité, vente au stère en vrac, accès remorque, rangement au temps passé, retrait, anticipation de la neige, paiements et intervention avec machine.
@@ -16,7 +18,7 @@ Mise à jour du 25 septembre 2026. Publication : https://geeruoss.github.io/copp
 
 ## Vérifications
 
-- Les neuf pages contrôlées à 320, 390, 768 et 1440 px : pas de débordement horizontal, un seul H1, aucune image chargée manquante et aucune erreur JavaScript observée.
+- Les neuf pages contrôlées à 320, 390, 768, 1024 et 1440 px : pas de débordement horizontal, un seul H1, aucune image chargée manquante et aucune erreur JavaScript observée.
 - Captures inspectées de l’accueil, des formats et du formulaire sur ordinateur et téléphone ; contrôle de la présentation des familles de bois.
 - Formulaire vide bloqué ; adresse requise pour livraison/intervention, exclue pour retrait. Message et URL WhatsApp identiques, destination +41 79 290 34 93. Le lien sortant de test est intercepté : aucun message envoyé.
 - Conflit épicéa/grosses bûches corrigé automatiquement ; quantité manuelle conservée ; préremplissage essence, format et mode vérifié.
