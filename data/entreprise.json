@@ -1,0 +1,27 @@
+{
+  "name": "Coppey Bois de feu",
+  "phone": "+41 79 290 34 93",
+  "whatsapp": "41792903493",
+  "domain": "https://coppeyboisdefeu.ch",
+  "confirmed_on": "2026-09-25",
+  "drying_months": "9 à 10 mois",
+  "humidity": "environ 15 à 20 %",
+  "wood": [
+    {"id":"hetre","name":"Hêtre (fayard)","family":"feuillus","origin":"Principalement du canton de Vaud"},
+    {"id":"frene","name":"Frêne","family":"feuillus","origin":"Principalement du canton de Vaud"},
+    {"id":"epicea","name":"Épicéa","family":"resineux","origin":"Valais"},
+    {"id":"meleze","name":"Mélèze, selon disponibilité","family":"resineux","origin":"Valais"}
+  ],
+  "formats": [
+    {"id":"25","label":"25 cm","factor":0.6},
+    {"id":"33","label":"33 cm","factor":0.7},
+    {"id":"50","label":"50 cm","factor":0.8},
+    {"id":"33-gros","label":"33 cm, grosses bûches","factor":0.7,"family":"feuillus"}
+  ],
+  "sale": "Au stère, en vrac. Quantité mesurée à l’aide de repères sur les bigbags.",
+  "pricing": "Bois et livraison sur demande.",
+  "stacking": "Rangement possible, facturé au temps passé.",
+  "access": "Accès nécessaire pour la remorque.",
+  "payment": "Tous types de paiement acceptés. Moment du règlement à convenir.",
+  "service": "Façonnage sur place avec la machine Coppey et mise en bigbags pour les triages forestiers, communes et particuliers."
+}

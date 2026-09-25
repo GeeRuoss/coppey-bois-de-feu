@@ -1,15 +1,9 @@
 # Estimation en stères
 
-Mise à jour du 15 septembre 2026 à la demande de Guillermo : le calculateur et la demande utilisent les stères au premier plan.
+Coefficients confirmés par le client le 25 septembre 2026 : 25 cm = 0,6 m³ empilé par stère ; 33 cm = 0,7 ; 50 cm = 0,8. Le format 33 cm grosses bûches utilise le coefficient 33 cm et n’est proposé qu’en feuillus.
 
-Le rangement est mesuré en centimètres. Volume empilé = largeur × profondeur × hauteur / 1 000 000. Estimation en stères = volume empilé / coefficient choisi : 25 cm = 0,6 ; 33 cm = 0,7 ; 50 cm = 0,8. Arrondi à un chiffre après la virgule, deux pour moins d’un stère.
+Volume empilé = largeur × profondeur × hauteur en cm / 1 000 000. Stères estimés = volume empilé / coefficient. Arrondi à un chiffre après la virgule, deux pour moins d’un stère. C’est un repère pour le rangement, pas le volume apparent livré en vrac. Coppey mesure commercialement les quantités avec des repères sur les bigbags.
 
-Sources consultées :
-- [France Bois Bûche, cahier des charges Centre Bois Bûche, tableau FCBA page 5](https://www.franceboisbuche.fr/wp-content/uploads/cahier-des-charges-centre-bois-buche.pdf).
-- [Ferme La Pièce SA, fournisseur suisse, équivalences publiées](https://www.ferme-lapiece.ch/bois-de-cheminee.html).
+Le calculateur présélectionne visiblement 33 cm. Le lien transmet dimensions et format ; le formulaire recalcule la même estimation. Le paramètre historique longueur reste accepté. Une modification manuelle de quantité est conservée quand le format change. Le message précise que l’estimation est à confirmer et inclut les dimensions ; un nombre seul reçoit l’unité stères.
 
-Il s’agit d’un repère pour du bois bien empilé, pas du bois en vrac, d’une mesure de bois plein ou d’un tarif Coppey. Convention de mesure et conditionnement commerciaux à confirmer avec le client. Les règles juridiques françaises de la source ne sont pas appliquées au site suisse.
-
-Le calculateur présélectionne visiblement 33 cm. Le lien transmet dimensions et longueur, et le formulaire recalcule la même estimation. Un ancien lien sans longueur demande de la choisir. Une modification manuelle de quantité est conservée même si la longueur change. Le message garde les dimensions et la mention estimation à confirmer ; un nombre saisi seul reçoit explicitement l’unité stères.
-
-Contrôles locaux : rangement de 100 × 100 × 100 cm donnant environ 1,7 / 1,4 / 1,3 stères selon 25 / 33 / 50 cm ; transfert du format et du résultat, conservation d’une quantité manuelle, unité présente dans le message WhatsApp et égalité aperçu/lien. Ancien lien 140 × 115 × 130 cm avec sélection 50 cm : environ 2,6 stères. Rendu mobile inspecté à 390 px. Aucun message envoyé.
+Contrôles : 100 × 100 × 100 cm donne environ 1,7 / 1,4 / 1,3 stères pour 25 / 33 / 50 cm. Le lien historique 140 × 115 × 130 cm avec 50 cm donne environ 2,6 stères. Transfert, modification du format, quantité manuelle, message WhatsApp et rendu mobile vérifiés.

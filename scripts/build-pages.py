@@ -17,6 +17,8 @@ for path in target.rglob('*'):
     text = path.read_text()
     text = text.replace('"/', '"' + prefix + '/').replace("'/", "'" + prefix + '/')
     text = text.replace('url(/', 'url(' + prefix + '/')
+    # L’image sociale doit être accessible depuis le miroir publié.
+    text = text.replace('https://coppeyboisdefeu.ch/assets/partage-', 'https://geeruoss.github.io'+prefix+'/assets/partage-')
     text = text.replace(', /assets/', ', ' + prefix + '/assets/').replace(',/assets/', ',' + prefix + '/assets/')
     path.write_text(text)
 (target / '.nojekyll').touch()

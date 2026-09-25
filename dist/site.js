@@ -1,54 +1,146 @@
-const menuButton=document.querySelector('.menu-toggle');const menu=document.querySelector('.mobile-menu');function menuInert(on){document.querySelectorAll('main,footer,.header .brand,.skip').forEach(el=>el.inert=on)}function closeMenu(){menuInert(false);menu.hidden=true;menuButton.setAttribute('aria-expanded','false');menuButton.setAttribute('aria-label','Ouvrir le menu');document.body.style.overflow=''}menuButton?.addEventListener('click',()=>{const isOpen=menuButton.getAttribute('aria-expanded')==='true';if(isOpen)closeMenu();else{menuInert(true);menu.hidden=false;menuButton.setAttribute('aria-expanded','true');menuButton.setAttribute('aria-label','Fermer le menu');document.body.style.overflow='hidden';menu.querySelector('a')?.focus()}});document.addEventListener('keydown',e=>{if(!menu||menu.hidden)return;if(e.key==='Escape'){closeMenu();menuButton.focus()}if(e.key==='Tab'){const links=[menuButton,...menu.querySelectorAll('a')];const first=links[0],last=links.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}});menu?.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));window.matchMedia('(min-width:768px)').addEventListener('change',e=>{if(e.matches)closeMenu()});
-// Repères indicatifs de bois empilé : 1 stère occupe environ 0,6 / 0,7 / 0,8 m³.
-// Sources et limites de l'estimation : docs/calcul-steres.md.
-const stereFactors = Object.freeze({'25':0.6, '33':0.7, '50':0.8});
-function estimateSteres(dimensions, length) {
-  if (!Object.hasOwn(stereFactors, length)) return null;
-  const amount = dimensions.reduce((a,b) => a*b, 1) / 1e6 / stereFactors[length];
-  return Number(amount.toFixed(amount < 1 ? 2 : 1));
+const config = JSON.parse(document.getElementById('site-data')?.textContent || '{}');
+const menuButton = document.querySelector('.menu-toggle');
+const menu = document.querySelector('.mobile-menu');
+function menuInert(on) {
+  document.querySelectorAll('main,footer,.header .brand,.skip').forEach(el => { el.inert=on; });
+}
+function closeMenu() {
+  if (!menu || !menuButton) return;
+  menuInert(false); menu.hidden=true;
+  menuButton.setAttribute('aria-expanded','false');
+  menuButton.setAttribute('aria-label','Ouvrir le menu');
+  document.body.style.overflow='';
+}
+menuButton?.addEventListener('click', () => {
+  if (menuButton.getAttribute('aria-expanded')==='true') closeMenu();
+  else {
+    menuInert(true); menu.hidden=false;
+    menuButton.setAttribute('aria-expanded','true');
+    menuButton.setAttribute('aria-label','Fermer le menu');
+    document.body.style.overflow='hidden'; menu.querySelector('a')?.focus();
+  }
+});
+document.addEventListener('keydown', event => {
+  if (!menu || menu.hidden) return;
+  if (event.key==='Escape') { closeMenu(); menuButton.focus(); }
+  if (event.key==='Tab') {
+    const links=[menuButton,...menu.querySelectorAll('a')], first=links[0],last=links.at(-1);
+    if (event.shiftKey && document.activeElement===first) { event.preventDefault(); last.focus(); }
+    else if (!event.shiftKey && document.activeElement===last) { event.preventDefault(); first.focus(); }
+  }
+});
+menu?.querySelectorAll('a').forEach(link => link.addEventListener('click',closeMenu));
+matchMedia('(min-width:768px)').addEventListener('change', event => {if(event.matches)closeMenu();});
+const formats = new Map((config.formats || []).map(format=>[format.id,format]));
+const woods = new Map((config.wood || []).map(wood=>[wood.id,wood]));
+function estimateSteres(dimensions, format) {
+  if (!formats.has(format)) return null;
+  const value=dimensions.reduce((a,b)=>a*b,1)/1e6/formats.get(format).factor;
+  return Number(value.toFixed(value<1?2:1));
 }
 function formatSteres(amount) {
-  return amount.toLocaleString('fr-CH', {maximumFractionDigits:2}) + (amount <= 1 ? ' stère' : ' stères');
+  return amount.toLocaleString('fr-CH',{maximumFractionDigits:2})+(amount<=1?' stère':' stères');
 }
-const spaceForm = document.querySelector('.space-inputs');
+const spaceForm=document.querySelector('.space-inputs');
 if (spaceForm) {
-  const dims = ['width','depth','height'].map(k => document.getElementById('space-'+k));
-  const cutLength = document.getElementById('space-length');
-  const valIds = ['width-value','depth-value','height-value'];
+  const keys=['width','depth','height'];
+  const dimensions=keys.map(key=>document.getElementById('space-'+key));
+  const cut=document.getElementById('space-length');
   function updateSpace() {
-    const values = dims.map(input => Number(input.value));
-    values.forEach((n,i) => document.getElementById(valIds[i]).value = n+' cm');
-    const amount = estimateSteres(values, cutLength.value);
-    document.getElementById('space-volume').value = '≈ '+amount.toLocaleString('fr-CH', {maximumFractionDigits:2});
-    document.querySelector('.space-result>span').textContent = amount <= 1 ? 'stère estimé' : 'stères estimés';
-    document.querySelector('.space-visual').style.setProperty('--wood-scale', String(.75+Math.min(amount,5)*.07));
-    const params = new URLSearchParams({largeur:String(values[0]),profondeur:String(values[1]),hauteur:String(values[2]),longueur:cutLength.value});
-    document.getElementById('use-space').href = '/reservation/?'+params.toString();
+    const values=dimensions.map(input=>Number(input.value));
+    values.forEach((value,i)=>{document.getElementById(keys[i]+'-value').value=value+' cm';});
+    const amount=estimateSteres(values,cut.value);
+    document.getElementById('space-volume').value='≈ '+amount.toLocaleString('fr-CH',{maximumFractionDigits:2});
+    document.querySelector('.space-result>span').textContent=amount<=1?'stère estimé':'stères estimés';
+    const params=new URLSearchParams({largeur:values[0],profondeur:values[1],hauteur:values[2],format:cut.value});
+    document.getElementById('use-space').href='/reservation/?'+params.toString();
   }
-  dims.forEach(input => input.addEventListener('input', updateSpace));
-  cutLength.addEventListener('change', updateSpace);
-  spaceForm.disabled = false;
-  document.getElementById('use-space').firstChild.textContent = 'Utiliser cette estimation ';
-  updateSpace();
+  dimensions.forEach(input=>input.addEventListener('input',updateSpace));
+  cut.addEventListener('change',updateSpace); spaceForm.disabled=false; updateSpace();
 }
-const requestForm=document.getElementById('wood-request');
-if(requestForm){const firstName=document.getElementById('first-name'),locality=document.getElementById('locality'),length=document.getElementById('length'),otherLength=document.getElementById('other-length'),quantity=document.getElementById('quantity'),timing=document.getElementById('timing'),precision=document.getElementById('message');const result=document.getElementById('message-result'),intro=document.getElementById('request-summary'),preview=document.getElementById('message-preview'),wa=document.getElementById('whatsapp-send'),params=new URLSearchParams(location.search);if(['Verbier','Le Châble','Vollèges','Martigny'].includes(params.get('localite')))locality.value=params.get('localite');const dimensions=['largeur','profondeur','hauteur'].map(k=>Number(params.get(k)));
-const hasDimensions=dimensions.every(Number.isFinite)&&dimensions[0]>=50&&dimensions[0]<=400&&dimensions[1]>=20&&dimensions[1]<=150&&dimensions[2]>=20&&dimensions[2]<=200;
-if (Object.hasOwn(stereFactors,params.get('longueur'))) length.value=params.get('longueur');
-let quantityEdited=false;
-function updateEstimate() {
-  if (!hasDimensions) return;
-  const amount=estimateSteres(dimensions,length.value);
-  const note=document.getElementById('space-estimate-note');
-  note.hidden=false;
-  note.textContent='Votre rangement : '+dimensions.join(' × ')+' cm. '+(amount===null?'Choisissez 25, 33 ou 50 cm pour estimer les stères.':'Environ '+formatSteres(amount)+' en bûches de '+length.value+' cm, à confirmer avec Coppey.');
-  if (!quantityEdited) quantity.value=amount===null?'':'Environ '+formatSteres(amount)+' (estimation à confirmer)';
+const form=document.getElementById('wood-request');
+if (form) {
+  const field=id=>document.getElementById(id);
+  const firstName=field('first-name'),wood=field('wood'),length=field('length'),quantity=field('quantity'),address=field('address'),timing=field('timing'),notes=field('message'),stacking=field('stacking');
+  const preview=field('message-preview'),send=field('whatsapp-send'),status=field('copy-status');
+  const params=new URLSearchParams(location.search);
+  const dimensions=['largeur','profondeur','hauteur'].map(key=>Number(params.get(key)));
+  const bounds=[[50,400],[20,150],[20,200]];
+  const hasDimensions=dimensions.every((value,i)=>Number.isFinite(value)&&value>=bounds[i][0]&&value<=bounds[i][1]);
+  const requestedFormat=params.get('format')||params.get('longueur');
+  if (formats.has(requestedFormat)) length.value=requestedFormat;
+  if (woods.has(params.get('bois'))) wood.value=params.get('bois');
+  if (['livraison','retrait','faconnage'].includes(params.get('mode'))) form.querySelector('input[name=mode][value="'+params.get('mode')+'"]').checked=true;
+  if (['Verbier','Le Châble','Vollèges','Martigny'].includes(params.get('localite'))) address.value=params.get('localite');
+  let quantityEdited=false;
+  let estimated=false;
+  const mode=()=>form.querySelector('input[name=mode]:checked').value;
+  function syncChoices() {
+    const intervention=mode()==='faconnage',pickup=mode()==='retrait';
+    field('wood-choice').hidden=intervention;wood.disabled=intervention;length.disabled=intervention;
+    field('address-field').hidden=pickup;address.disabled=pickup;address.required=!pickup;address.setCustomValidity('');
+    field('address-label').textContent=intervention?'Lieu d’intervention *':'Adresse de livraison *';
+    field('quantity-label').textContent=intervention?'Volume à préparer, si connu':'Quantité en stères';
+    field('stacking-field').hidden=pickup||intervention;stacking.disabled=pickup||intervention;
+    const conifer=woods.get(wood.value)?.family==='resineux';
+    const conflict=conifer&&length.value==='33-gros';
+    if (conflict) length.value='33';
+    length.querySelector('[value="33-gros"]').disabled=conifer;
+    field('large-log-note').hidden=intervention||(!conifer&&length.value!=='33-gros');
+    field('large-log-note').setAttribute('role','status');
+    const note=field('space-estimate-note');
+    note.hidden=!hasDimensions||intervention;
+    if (hasDimensions && !intervention) {
+      const amount=estimateSteres(dimensions,length.value);
+      note.textContent='Rangement : '+dimensions.join(' × ')+' cm. '+(amount===null?'Choisissez un format pour estimer vos stères.':'Environ '+formatSteres(amount)+', à confirmer ensemble.');
+      if (!quantityEdited) { quantity.value=amount===null?'':'Environ '+formatSteres(amount);estimated=amount!==null; }
+    } else if (hasDimensions && !quantityEdited) {quantity.value='';estimated=false;}
+  }
+  function makeMessage() {
+    const intervention=mode()==='faconnage',pickup=mode()==='retrait';
+    const selectedWood=woods.get(wood.value)?.name||(length.value==='33-gros'?'Feuillus, à conseiller':'À conseiller');
+    let amount=quantity.value.trim()||'À conseiller';
+    if (/^\d+(?:[.,]\d+)?$/.test(amount)) amount+=(Number(amount.replace(',','.'))<=1?' stère':' stères');
+    if (estimated) amount+=' (estimation à confirmer)';
+    return [
+      'Bonjour Coppey'+(firstName.value.trim()?', je m’appelle '+firstName.value.trim():'')+'.',
+      intervention?'J’aimerais faire préparer du bois en bigbags sur place avec votre machine.':'J’aimerais commander du bois de feu.',
+      !intervention&&'Bois : '+selectedWood,
+      !intervention&&'Format : '+(formats.get(length.value)?.label||'À conseiller'),
+      (intervention?'Volume à préparer : ':'Quantité : ')+amount,
+      !intervention&&'Service : '+(pickup?'Retrait au dépôt':'Livraison en vrac'),
+      !pickup&&address.value.trim()&&(intervention?'Lieu d’intervention : ':'Adresse de livraison : ')+address.value.trim(),
+      !pickup&&!intervention&&stacking.checked&&'Rangement souhaité, facturé au temps passé.',
+      !intervention&&hasDimensions&&'Rangement disponible : '+dimensions.join(' × ')+' cm',
+      timing.value.trim()&&'Période souhaitée : '+timing.value.trim(),
+      notes.value.trim()&&'Précisions : '+notes.value.trim(),
+      'Pouvez-vous me confirmer le prix et les possibilités ? Merci !'
+    ].filter(Boolean).join('\n');
+  }
+  function updateMessage() {
+    const text=makeMessage();preview.value=text;
+    send.href='https://wa.me/'+config.whatsapp+'?text='+encodeURIComponent(text);
+    status.textContent='';
+  }
+  function validate() {
+    firstName.setCustomValidity(firstName.value.trim()?'':'Indiquez votre prénom.');
+    address.setCustomValidity(address.disabled||address.value.trim()?'':'Indiquez l’adresse pour préparer votre demande.');
+    return form.reportValidity();
+  }
+  firstName.addEventListener('input',()=>firstName.setCustomValidity(''));
+  address.addEventListener('input',()=>address.setCustomValidity(''));
+  quantity.addEventListener('input',()=>{quantityEdited=true;estimated=false;});
+  form.addEventListener('input',updateMessage);
+  form.addEventListener('change',()=>{syncChoices();updateMessage();});
+  send.addEventListener('click',event=>{if(!validate()){event.preventDefault();return;}updateMessage();});
+  form.addEventListener('submit',event=>{event.preventDefault();if(validate())send.click();});
+  field('copy-message').addEventListener('click',async()=>{
+    updateMessage();
+    try {await navigator.clipboard.writeText(preview.value);status.textContent='Message copié.';}
+    catch {preview.focus();preview.select();status.textContent='Sélectionnez et copiez le message.';}
+  });
+  field('request-fields').disabled=false; syncChoices(); updateMessage();
 }
-quantity.addEventListener('input',()=>{quantityEdited=true});
-length.addEventListener('change',updateEstimate);
-updateEstimate();
-const lengths=new Set(['conseil','25','33','50','autre']);function syncLength(){const custom=length.value==='autre';document.getElementById('other-length-field').hidden=!custom;otherLength.disabled=!custom;otherLength.required=custom}length.addEventListener('change',syncLength);function makeMessage(){const selected=lengths.has(length.value)?length.value:'conseil';const size=selected==='autre'?otherLength.value+' cm':selected==='conseil'?'À conseiller':selected+' cm';return ['Bonjour Coppey, je m’appelle '+firstName.value.trim()+'.','J’aimerais du bois de feu.','Longueur souhaitée : '+size,'Quantité souhaitée : '+(quantity.value.trim()?(/^\d+(?:[.,]\d+)?$/.test(quantity.value.trim())?quantity.value.trim()+(Number(quantity.value.trim().replace(',','.'))<=1?' stère':' stères'):quantity.value.trim()):'À conseiller en stères'),hasDimensions&&'Rangement disponible : '+dimensions.join(' × ')+' cm',locality.value.trim()&&'Localité : '+locality.value.trim(),timing.value.trim()&&'Période souhaitée : '+timing.value.trim(),precision.value.trim()&&'Précisions : '+precision.value.trim(),'Pouvez-vous me confirmer les possibilités, le prix et les modalités ?','Merci !'].filter(Boolean).join('\n')}let prepared=false;function updateMessage(){const text=makeMessage();preview.value=text;wa.href='https://wa.me/41792903493?text='+encodeURIComponent(text)}function updateProgress(){const completed=[!!firstName.value.trim(),!!(quantity.value.trim()||length.value!=='conseil'),!!(locality.value.trim()||timing.value.trim()||precision.value.trim())];document.querySelectorAll('.request-progress span').forEach((s,i)=>s.classList.toggle('active',completed[i]));if(prepared)updateMessage();document.getElementById('copy-status').textContent=''}firstName.addEventListener('input',()=>firstName.setCustomValidity(''));requestForm.addEventListener('input',updateProgress);requestForm.addEventListener('change',updateProgress);requestForm.addEventListener('submit',e=>{e.preventDefault();firstName.setCustomValidity(firstName.value.trim()?'':'Indiquez votre prénom.');if(!requestForm.reportValidity())return;prepared=true;updateMessage();intro.hidden=true;result.hidden=false;result.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'instant':'smooth',block:'center'});preview.focus({preventScroll:true})});wa.addEventListener('click',e=>{firstName.setCustomValidity(firstName.value.trim()?'':'Indiquez votre prénom.');if(!requestForm.reportValidity()){e.preventDefault();return}updateMessage()});document.getElementById('copy-message').addEventListener('click',async()=>{firstName.setCustomValidity(firstName.value.trim()?'':'Indiquez votre prénom.');if(!requestForm.reportValidity())return;updateMessage();try{await navigator.clipboard.writeText(preview.value);document.getElementById('copy-status').textContent='Message copié.'}catch{preview.focus();preview.select();document.getElementById('copy-status').textContent='Sélectionnez et copiez le message ci-dessus.'}});document.getElementById('request-fields').disabled=false;document.getElementById('prepare-message').disabled=false;syncLength();updateProgress()}
-
 // Une seule invitation par session, sans interrompre le menu ou la saisie.
 const contactWidget = document.querySelector('.contact-widget');
 if (contactWidget) {
@@ -72,7 +164,9 @@ if (contactWidget) {
   function syncContactVisibility() {
     const editing = document.activeElement?.matches('input,textarea,select,[contenteditable="true"]');
     const menuOpen = menuButton?.getAttribute('aria-expanded') === 'true';
-    contactWidget.hidden = Boolean(editing || menuOpen);
+    const formRect = form?.getBoundingClientRect();
+    const formVisible = formRect && formRect.top < innerHeight && formRect.bottom > 0;
+    contactWidget.hidden = Boolean(editing || menuOpen || formVisible);
   }
   function invite() {
     if (alreadySeen) return;
@@ -91,6 +185,7 @@ if (contactWidget) {
     if (event.key === 'Escape' && !bubble.hidden && !contactWidget.hidden) closeInvitation();
   });
   document.addEventListener('focusin', syncContactVisibility);
+  if (form) new IntersectionObserver(syncContactVisibility).observe(form);
   document.addEventListener('focusout', () => setTimeout(syncContactVisibility, 0));
   if (menuButton) new MutationObserver(syncContactVisibility).observe(menuButton, {attributes:true, attributeFilter:['aria-expanded']});
   syncContactVisibility();

@@ -5,11 +5,11 @@ Dossier du site Coppey Bois de feu, constitué le 15 septembre 2026.
 ## Site et étude
 
 - Aperçu local : http://127.0.0.1:8816/
-- Site statique : `dist/` (cinq pages et une page 404).
+- Site statique : `dist/` (neuf pages et une page 404).
 - Version de présentation publiée sur GitHub Pages : https://geeruoss.github.io/coppey-bois-de-feu/
 - Domaine prévu : `coppeyboisdefeu.ch`, pas encore raccordé.
 - Étude SEO et concurrence : `docs/etude-seo.md`.
-- Questions prêtes à transmettre au client : `docs/questions-client.md`.
+- Réponses client et derniers détails à préciser : `docs/questions-client.md`.
 - État détaillé, contrôles et points à confirmer : `docs/etat-du-site.md`.
 
 La vraie identité des bâches est conservée. Le logo, son lettrage, les bûches et le veinage sont extraits en SVG. Stolzl est identifiée et son intégration officielle Adobe Fonts attend la connexion au compte ; une police de secours s’affiche en attendant.
@@ -25,7 +25,7 @@ Les 37 photos retouchées dans Lightroom sont dans `medias/photos-retouchees/`, 
 - Les 37 fichiers ont été décodés et vérifiés sans erreur.
 
 L’inventaire des noms, dimensions et poids se trouve dans `medias/manifest-photos.csv`.
-Les originaux retouchés restent sur le Mac et sont exclus de Git. Les photos WebP optimisées utilisées par le site sont versionnées dans `dist/assets/`. Les PDF sources des bâches restent également locaux.
+Les originaux retouchés restent sur le Mac et sont exclus de Git. Les photos WebP optimisées utilisées par le site sont versionnées dans `dist/assets/`. La sélection et les cadrages du 25 septembre sont documentés dans `docs/selection-photos.md`. Les PDF sources des bâches restent également locaux.
 
 ## Logos
 
@@ -42,11 +42,11 @@ La série finale comporte aussi des corrections individuelles d’exposition et 
 
 ## Travailler sur le site
 
-Aucune installation de dépendances n’est nécessaire. `dist/` contient le site statique, dont le HTML de l’accueil, le CSS et le JavaScript sources. Il est volontairement versionné.
+Aucune installation de dépendances n’est nécessaire. `dist/` contient le site statique, avec le HTML généré, le CSS et le JavaScript sources. Il est volontairement versionné.
 
 ```sh
 python3 scripts/generate-pages.py
 python3 -m http.server 8816 --bind 127.0.0.1 --directory dist
 ```
 
-Le générateur reprend l’en-tête et le pied de page de l’accueil pour les pages secondaires. La bulle WhatsApp et le calculateur de stères sont inclus. La version GitHub Pages reste en `noindex,nofollow` pendant la préparation du domaine métier. Chaque push sur `main` publie automatiquement le contenu de `dist/`, après adaptation des chemins par `scripts/build-pages.py`. Les documents de travail et médias originaux ne font pas partie du site publié.
+Le générateur produit toutes les pages depuis `data/entreprise.json` et ses composants communs. Le modèle de la bulle se trouve dans `scripts/contact-widget.html`. La page Stères & formats comprend le calculateur. La demande WhatsApp reprend le bois, le format, les stères et l’adresse ; elle distingue livraison, retrait et façonnage sur place. Les faits client ont été actualisés le 25 septembre 2026. La version GitHub Pages reste en `noindex,nofollow` pendant la préparation du domaine métier. Chaque push sur `main` publie automatiquement le contenu de `dist/`, après adaptation des chemins par `scripts/build-pages.py`. Les documents de travail et médias originaux ne font pas partie du site publié.
