@@ -11,7 +11,7 @@ Mise à jour du 25 septembre 2026. Publication : https://geeruoss.github.io/copp
 - Prix, disponibilités, zones et frais de livraison restent sur demande. Aucune adresse de dépôt, garantie de délai ou disponibilité du mélèze inventée.
 - Page Stères & formats dans le menu principal, bloc dédié sur l’accueil et accès depuis la demande. Facteurs de volume confirmés par le client : 0,6 / 0,7 / 0,8 m³ empilé par stère selon 25 / 33 / 50 cm.
 - Formulaire avec essence, format, quantité et adresse de livraison. Trois modes : livraison, retrait au dépôt, façonnage chez le client. Message visible avant ouverture de WhatsApp ; validation des champs utiles ; aucune commande ou message envoyé automatiquement.
-- Le bouton WhatsApp flottant et l’invitation après 5 secondes restent présents. Le widget se masque pendant la saisie, le menu et lorsque le formulaire principal occupe l’écran.
+- Le bouton WhatsApp flottant est élargi et affiche le libellé WhatsApp, avec contour crème et ombre renforcée. Le rendu est vérifié à 320, 390 et 1440 px ; l’invitation après 5 secondes reste présente. Le widget se masque pendant la saisie, le menu et lorsque le formulaire principal occupe l’écran.
 - L’image de partage reprend la nouvelle couverture, avec une URL publique propre au miroir GitHub Pages.
 
 ## Vérifications
