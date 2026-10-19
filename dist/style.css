@@ -39,7 +39,7 @@ body{font-size:17px;line-height:1.65}h1,h2,h3{letter-spacing:-.035em;text-wrap:b
 
 /* Direction Woodcraft : matière détourée, typographie et espace. */
 :root{--radius:16px;--line:#c8bdad}
-.button{border-radius:40px;padding-inline:24px;gap:18px;font-weight:500}.button::after{content:'↗';font-size:21px;line-height:1}.button--whatsapp::after{content:none}
+.button{border-radius:40px;padding-inline:24px;gap:18px;font-weight:500}
 .header{background:var(--paper);border-bottom:1px solid var(--line);padding-block:18px}.brand img{width:64px;height:66px}.header nav{gap:32px}.header nav .button{min-height:42px}.header nav>a:not(.button){font-size:14px}.header nav>a:hover{color:var(--muted)}
 .woodcraft-hero{position:relative;min-height:calc(100svh - 103px);max-height:880px;height:760px;padding-top:44px;isolation:isolate;overflow:hidden}
 .woodcraft-hero h1{font-size:clamp(96px,12.8vw,182px);font-weight:700;line-height:1.02;letter-spacing:-.075em;text-align:center;white-space:nowrap;position:relative;z-index:1}
