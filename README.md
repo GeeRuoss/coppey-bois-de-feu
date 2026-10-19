@@ -5,7 +5,7 @@ Dossier du site Coppey Bois de feu, constitué le 15 septembre 2026.
 ## Site et étude
 
 - Aperçu local : http://127.0.0.1:8816/
-- Site statique : `dist/` (neuf pages et une page 404).
+- Site statique : `dist/` (17 pages et une page 404).
 - Hébergement : GitHub Pages, publication automatique de main.
 - Domaine principal : https://coppeyboisdefeu.ch/ ; DNS gérés chez Hostpoint (raccordement le 19 octobre 2026).
 - `www` pointe vers `geeruoss.github.io` et redirige vers le domaine principal.
@@ -52,3 +52,5 @@ python3 -m http.server 8816 --bind 127.0.0.1 --directory dist
 ```
 
 Le générateur produit toutes les pages depuis `data/entreprise.json` et ses composants communs. Le modèle de la bulle se trouve dans `scripts/contact-widget.html`. La page Stères & formats comprend le calculateur. La demande WhatsApp reprend le bois, le format, les stères et l’adresse ; elle distingue livraison, retrait et façonnage sur place. Les faits client ont été actualisés le 25 septembre 2026. Les sources de prévisualisation restent en `noindex,nofollow` ; le build publié active `index,follow` pour le domaine métier. Chaque push sur `main` publie automatiquement le contenu de `dist/`, sur le domaine principal via `scripts/build-pages.py`. Les documents de travail et médias originaux ne font pas partie du site publié.
+
+La refonte inspirée de Woodcraft du 19 octobre 2026 et le visuel détouré sont documentés dans `docs/design-woodcraft.md`.
