@@ -29,7 +29,7 @@ assert.equal(accepted.loaded.length,1);
 assert(accepted.loaded[0].src.endsWith('id=G-TEST123'));
 const config=accepted.context.dataLayer.find(args=>args[0]==='config')[2];
 assert.equal(config.page_location,'https://coppeyboisdefeu.ch/reservation/');
-assert.equal(config.page_referrer,'https://example.com/');
+assert.equal(config.page_referrer,'https://example.com');
 assert.equal(config.allow_google_signals,false);
 accepted.listeners.click({target:{closest:()=>({href:'https://wa.me/41792903493?text=message-prive'})}});
 const contact=accepted.context.dataLayer.at(-1);

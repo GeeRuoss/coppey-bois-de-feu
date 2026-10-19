@@ -15,3 +15,11 @@ Analytics : configuration d’un compte dédié préparée (Suisse, CHF, objecti
 Intégration prête : aucune requête Google avant consentement ; refuser aussi accessible qu’accepter, choix six mois et retrait via le pied de page. Seuls les chemins de pages et événements contact_whatsapp/contact_phone sont envoyés. Requêtes et fragments des URL supprimés. Ne pas activer les mesures améliorées automatiques du flux : les liens WhatsApp portent le contenu privé des demandes. Vérifier l’arrivée des événements dans le temps réel avant de déclarer Analytics opérationnel.
 
 Test du consentement et de la minimisation : `node scripts/check-analytics.cjs` (environnement simulé). Syntaxe JS et build avec contrôle des chemins validés. Les tests navigateur du consentement réel restent à exécuter lorsque l’identifiant sera disponible.
+
+## Extension SEO et Analytics
+
+Huit nouvelles pages : hêtre/fayard, frêne, épicéa, mélèze, Verbier/Val de Bagnes, Sembrancher/Orsières, Martigny, préparation d’une intervention. Page de façonnage enrichie et section avec machine mise en avant sur l’accueil. Informations réelles, prix et déplacements sur demande. Pas d’agences locales inventées. Liens depuis les familles et le pied de page. Quarante contrôles supplémentaires à quatre largeurs : aucune anomalie détectée.
+
+Compte Analytics dédié 412472369, propriété 559569890, flux Web 16159144503, identifiant G-2XMVF9QZ57. Conditions acceptées après accord contextuel du 19 octobre. Mesures améliorées désactivées pour protéger les paramètres des liens WhatsApp. Association Search Console créée. Activation dans la publication suivante ; contrôle réel du consentement et de la réception à consigner ci-dessous.
+
+Recherche ciblée et PDF dans docs/seo-20261019, conservés localement.

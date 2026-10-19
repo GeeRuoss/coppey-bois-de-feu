@@ -71,7 +71,7 @@ if (form) {
   if (formats.has(requestedFormat)) length.value=requestedFormat;
   if (woods.has(params.get('bois'))) wood.value=params.get('bois');
   if (['livraison','retrait','faconnage'].includes(params.get('mode'))) form.querySelector('input[name=mode][value="'+params.get('mode')+'"]').checked=true;
-  if (['Verbier','Le Châble','Vollèges','Martigny'].includes(params.get('localite'))) address.value=params.get('localite');
+  if (['Verbier','Le Châble','Vollèges','Sembrancher','Orsières','Martigny'].includes(params.get('localite'))) address.value=params.get('localite');
   let quantityEdited=false;
   let estimated=false;
   const mode=()=>form.querySelector('input[name=mode]:checked').value;

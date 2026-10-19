@@ -29,10 +29,10 @@
     });
     window.gtag('js', new Date());
     window.gtag('config', id, {
-      send_page_view: false, allow_google_signals: false,
+      send_page_view: false, cookie_expires: 15552000, allow_google_signals: false,
       allow_ad_personalization_signals: false,
       page_location: location.origin + location.pathname,
-      page_referrer: (() => { try { const r = new URL(document.referrer); return r.origin + r.pathname; } catch { return ''; } })()
+      page_referrer: (() => { try { const r = new URL(document.referrer); return r.origin; } catch { return ''; } })()
     });
     window.gtag('event', 'page_view', {
       page_location: location.origin + location.pathname,
