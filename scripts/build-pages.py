@@ -1,4 +1,4 @@
-"""Prépare le site pour le sous-dossier GitHub Pages, sans modifier l'aperçu local."""
+"""Prépare la publication sur le domaine Coppey, sans modifier les sources."""
 from pathlib import Path
 from html.parser import HTMLParser
 from urllib.parse import urlsplit
@@ -8,7 +8,7 @@ root = Path(__file__).resolve().parents[1]
 runpy.run_path(str(root/'scripts/check-sharing.py'),run_name='__main__')
 source = root / 'dist'
 target = root / 'build' / 'github-pages'
-prefix = '/coppey-bois-de-feu'
+prefix = ''
 if target.exists():
     shutil.rmtree(target)
 shutil.copytree(source, target)
@@ -16,14 +16,16 @@ for path in target.rglob('*'):
     if path.suffix not in {'.html', '.css', '.js'}:
         continue
     text = path.read_text()
+    if path.suffix == '.html' and path.name != '404.html':
+        text = text.replace('content="noindex,nofollow"', 'content="index,follow"')
     text = text.replace('"/', '"' + prefix + '/').replace("'/", "'" + prefix + '/')
     text = text.replace('url(/', 'url(' + prefix + '/')
-    # L’image sociale doit être accessible depuis le miroir publié.
-    text = text.replace('https://coppeyboisdefeu.ch/assets/partage-', 'https://geeruoss.github.io'+prefix+'/assets/partage-')
+    # Les métadonnées restent sur le domaine principal.
     text = text.replace(', /assets/', ', ' + prefix + '/assets/').replace(',/assets/', ',' + prefix + '/assets/')
-    text = text.replace('property="og:url" content="https://coppeyboisdefeu.ch/', 'property="og:url" content="https://geeruoss.github.io'+prefix+'/')
     path.write_text(text)
 (target / '.nojekyll').touch()
+(target / 'CNAME').write_text('coppeyboisdefeu.ch\n')
+(target / 'robots.txt').write_text('User-agent: *\nAllow: /\nSitemap: https://coppeyboisdefeu.ch/sitemap.xml\n')
 
 class CheckLinks(HTMLParser):
     def handle_starttag(self, tag, attrs):
