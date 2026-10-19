@@ -29,3 +29,9 @@ Les pages internes partagent désormais une introduction en deux colonnes sur or
 La bûche de l’accueil flotte légèrement pendant une entrée de 4,6 secondes, puis réagit au pointeur sur les appareils équipés d’une souris. Le déplacement est borné à 8 px horizontalement et 6 px verticalement ; il se réinitialise à la sortie du pointeur ou du premier écran. Sur mobile, seule l’entrée discrète est active. La réduction des animations du système désactive le mouvement. La composition tablette place la bûche au-dessus des textes pour éviter tout recouvrement.
 
 40 contrôles de structure sur dix familles de pages à 320, 390, 768 et 1440 px : pas de débordement, une H1, aucune image chargée cassée. Captures inspectées pour formats, façonnage, formulaire et accueil tablette/petit téléphone. Calculateur testé avec une largeur de rangement portée de 100 à 200 cm : estimation de 1,4 à 2,9 stères et lien de demande actualisé. Mode façonnage préselectionné vérifié. Mouvement au pointeur constaté ; durée limitée et styles de mouvement réduit vérifiés. Consentement Analytics testé par le contrôle du projet.
+
+## Simplification des séparations et des actions
+
+Suppression des filets horizontaux décoratifs : navigation, introductions, sections, cartes, formats, faits de séchage, FAQ et pied de page. Le bandeau récapitulatif sous l’accueil, redondant avec la navigation, est retiré. Les champs et les indicateurs de focus conservent leurs contours utiles. Les actions principales restent brunes pleines ; les actions secondaires et les anciens liens soulignés deviennent des boutons en pilule à contour brun. Les cartes cliquables conservent une seule destination et aucun lien n’est imbriqué dans un autre.
+
+40 contrôles du rendu effectif sur dix familles de pages à 320/390/768/1440 px, largeur réelle mesurée dans chaque page : aucun débordement. Vérification des séparations supprimées sur les composants concernés et captures mobile/bureau inspectées.
