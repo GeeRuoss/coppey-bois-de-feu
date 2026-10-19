@@ -220,3 +220,34 @@ if (contactWidget) {
     candidates.forEach(element => element.classList.remove('is-pending'));
   });
 })();
+
+// Déplacement borné, réservé à la souris et arrêté hors du premier écran.
+(() => {
+  const hero = document.querySelector('.woodcraft-hero');
+  const wood = hero?.querySelector('.woodcraft-hero__visual img');
+  if (!wood) return;
+  const motion = matchMedia('(prefers-reduced-motion: reduce)');
+  const mouse = matchMedia('(hover: hover) and (pointer: fine)');
+  let visible = true;
+  const reset = () => {
+    wood.style.removeProperty('--wood-x');
+    wood.style.removeProperty('--wood-y');
+    wood.style.removeProperty('--wood-tilt');
+  };
+  hero.addEventListener('pointermove', event => {
+    if (!visible || motion.matches || !mouse.matches || event.pointerType !== 'mouse') return;
+    const bounds = hero.getBoundingClientRect();
+    const x = Math.max(-.5, Math.min(.5, (event.clientX - bounds.left) / bounds.width - .5));
+    const y = Math.max(-.5, Math.min(.5, (event.clientY - bounds.top) / bounds.height - .5));
+    wood.style.setProperty('--wood-x', `${x * 16}px`);
+    wood.style.setProperty('--wood-y', `${y * 12}px`);
+    wood.style.setProperty('--wood-tilt', `${x * 1.2}deg`);
+  }, {passive: true});
+  hero.addEventListener('pointerleave', reset);
+  motion.addEventListener('change', reset);
+  mouse.addEventListener('change', reset);
+  if ('IntersectionObserver' in window) new IntersectionObserver(entries => {
+    visible = entries[0].isIntersecting;
+    if (!visible) reset();
+  }).observe(hero);
+})();
