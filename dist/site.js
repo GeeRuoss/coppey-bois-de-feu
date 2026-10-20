@@ -43,20 +43,74 @@ function formatSteres(amount) {
 }
 const spaceForm=document.querySelector('.space-inputs');
 if (spaceForm) {
+  const tool=spaceForm.closest('.space-tool');
   const keys=['width','depth','height'];
   const dimensions=keys.map(key=>document.getElementById('space-'+key));
+  const numbers=keys.map(key=>document.getElementById('space-number-'+key));
   const cut=document.getElementById('space-length');
+  const scene=document.getElementById('space-scene');
+  const model=document.getElementById('space-model');
+  const presets=[...tool.querySelectorAll('[data-space-preset]')];
+  let view=0;
+  const views=[45,28,62];
+  const metres=n=>(n/100).toLocaleString('fr-CH',{maximumFractionDigits:2})+' m';
+  function drawSpace(values) {
+    const [w,d,h]=values.map(n=>n/100);
+    const angle=views[view]*Math.PI/180,c=Math.cos(angle),s=Math.sin(angle),scale=100;
+    const x=340-(w*c-d*s)*scale/2,y=310-(w*s+d*c)*scale*.32/2;
+    const point=(a,b,z)=>[x+(a*c-z*s)*scale,y+(a*s+z*c)*scale*.32-b*scale];
+    const pair=p=>p.map(n=>n.toFixed(2)).join(',');
+    const front=point(0,0,d),side=point(w,0,0),top=point(0,h,0);
+    const widthA=point(0,0,d),widthB=point(w,0,d),depthA=point(w,0,0),depthB=point(w,0,d),heightB=point(0,h,d);
+    model.innerHTML=`<ellipse cx="340" cy="318" rx="${(w*c+d*s)*scale*.54}" ry="${(w*s+d*c)*scale*.18}" fill="#3f3625" opacity=".07"/>
+      <g transform="matrix(${-s*scale} ${c*scale*.32} 0 ${-scale} ${pair(side).replace(',',' ')})"><rect width="${d}" height="${h}" fill="url(#log-sides)"/></g>
+      <g transform="matrix(${c*scale} ${s*scale*.32} 0 ${-scale} ${pair(front).replace(',',' ')})"><rect width="${w}" height="${h}" fill="url(#log-ends)"/></g>
+      <g transform="matrix(${c*scale} ${s*scale*.32} ${-s*scale} ${c*scale*.32} ${pair(top).replace(',',' ')})"><rect width="${w}" height="${d}" fill="#c7a987"/><path d="${Array.from({length:Math.ceil(w/.18)},(_,i)=>`M${(i*.18).toFixed(2)} 0v${d}`).join(' ')}" stroke="#9c7853" stroke-width=".012"/></g>
+      <g class="wood-scene__dimensions" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M${widthA[0]},${widthA[1]+24}L${widthB[0]},${widthB[1]+24}"/><path d="M${depthA[0]+22},${depthA[1]+8}L${depthB[0]+22},${depthB[1]+8}"/><path d="M${widthA[0]-22},${widthA[1]}L${heightB[0]-22},${heightB[1]}"/></g>
+      <g class="wood-scene__labels" fill="currentColor"><text x="${(widthA[0]+widthB[0])/2}" y="${(widthA[1]+widthB[1])/2+52}" text-anchor="middle">${metres(values[0])}</text><text x="${(depthA[0]+depthB[0])/2+36}" y="${(depthA[1]+depthB[1])/2+14}" text-anchor="start">${metres(values[1])}</text><text x="${widthA[0]-34}" y="${(widthA[1]+heightB[1])/2+6}" text-anchor="end">${metres(values[2])}</text></g>`;
+    scene.setAttribute('aria-label',`Volume de bois empilé en 3D : largeur ${metres(values[0])}, profondeur ${metres(values[1])}, hauteur ${metres(values[2])}. Le personnage représente une personne de 1,70 m.`);
+  }
   function updateSpace() {
     const values=dimensions.map(input=>Number(input.value));
-    values.forEach((value,i)=>{document.getElementById(keys[i]+'-value').value=value+' cm';});
+    values.forEach((value,i)=>{
+      document.getElementById(keys[i]+'-value').value=value+' cm';
+      if(document.activeElement!==numbers[i]) numbers[i].value=value;
+      const percent=(value-Number(dimensions[i].min))/(Number(dimensions[i].max)-Number(dimensions[i].min))*100;
+      dimensions[i].style.setProperty('--range-fill',percent+'%');
+    });
     const amount=estimateSteres(values,cut.value);
     document.getElementById('space-volume').value='≈ '+amount.toLocaleString('fr-CH',{maximumFractionDigits:2});
     document.querySelector('.space-result>span').textContent=amount<=1?'stère estimé':'stères estimés';
+    const cubic=values.reduce((a,b)=>a*b,1)/1e6;
+    document.getElementById('space-cubic').textContent=cubic.toLocaleString('fr-CH',{maximumFractionDigits:2})+' m³';
+    presets.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.spacePreset===values.join(','))));
+    drawSpace(values);
     const params=new URLSearchParams({largeur:values[0],profondeur:values[1],hauteur:values[2],format:cut.value});
     document.getElementById('use-space').href='/reservation/?'+params.toString();
   }
   dimensions.forEach(input=>input.addEventListener('input',updateSpace));
-  cut.addEventListener('change',updateSpace); spaceForm.disabled=false; updateSpace();
+  numbers.forEach((input,i)=>{
+    input.addEventListener('focus',()=>tool.classList.add('is-number-editing'));
+    input.addEventListener('blur',()=>tool.classList.remove('is-number-editing'));
+    input.addEventListener('input',()=>{
+      if(input.value===''||!input.validity.valid) return;
+      dimensions[i].value=input.value;updateSpace();
+    });
+    const normalizeNumber=()=>{
+      if(input.value===''||!Number.isFinite(input.valueAsNumber)) input.value=dimensions[i].value;
+      input.value=Math.min(Number(input.max),Math.max(Number(input.min),Math.round(Number(input.value))));
+      dimensions[i].value=input.value;updateSpace();
+    };
+    input.addEventListener('change',normalizeNumber);
+    input.addEventListener('blur',normalizeNumber);
+    input.addEventListener('keydown',event=>{if(event.key==='Enter'){event.preventDefault();normalizeNumber();}});
+  });
+  presets.forEach(button=>button.addEventListener('click',()=>{
+    const values=button.dataset.spacePreset.split(',');
+    dimensions.forEach((input,i)=>input.value=values[i]);updateSpace();
+  }));
+  document.getElementById('space-turn').addEventListener('click',()=>{view=(view+1)%views.length;drawSpace(dimensions.map(input=>Number(input.value)));});
+  cut.addEventListener('change',updateSpace);spaceForm.disabled=false;updateSpace();
 }
 const form=document.getElementById('wood-request');
 if (form) {
@@ -166,7 +220,9 @@ if (contactWidget) {
     const menuOpen = menuButton?.getAttribute('aria-expanded') === 'true';
     const formRect = form?.getBoundingClientRect();
     const formVisible = formRect && formRect.top < innerHeight && formRect.bottom > 0;
-    contactWidget.hidden = Boolean(editing || menuOpen || formVisible);
+    const calculatorRect = spaceForm?.closest('.space-tool').getBoundingClientRect();
+    const calculatorVisible = calculatorRect && calculatorRect.top < innerHeight && calculatorRect.bottom > 0;
+    contactWidget.hidden = Boolean(editing || menuOpen || formVisible || calculatorVisible);
   }
   function invite() {
     if (alreadySeen) return;
@@ -186,6 +242,7 @@ if (contactWidget) {
   });
   document.addEventListener('focusin', syncContactVisibility);
   if (form) new IntersectionObserver(syncContactVisibility).observe(form);
+  if (spaceForm) new IntersectionObserver(syncContactVisibility).observe(spaceForm.closest('.space-tool'));
   document.addEventListener('focusout', () => setTimeout(syncContactVisibility, 0));
   if (menuButton) new MutationObserver(syncContactVisibility).observe(menuButton, {attributes:true, attributeFilter:['aria-expanded']});
   syncContactVisibility();

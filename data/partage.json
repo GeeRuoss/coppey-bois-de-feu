@@ -20,12 +20,12 @@
     },
     "formats": {
       "headline": [
-        "Vos bûches.",
-        "Vos stères."
+        "Vos stères.",
+        "En 3D."
       ],
-      "caption": "Estimez votre quantité",
+      "caption": "Visualisez votre rangement",
       "image": "@home_cutout",
-      "alt": "Coppey Bois de feu : bûches détourées pour comparer les formats de 25, 33 et 50 cm et estimer ses stères."
+      "alt": "Calculateur de stères Coppey : volume de bois en 3D, dimensions et repère humain."
     },
     "faconnage": {
       "headline": [

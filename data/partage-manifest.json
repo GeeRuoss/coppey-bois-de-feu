@@ -4,7 +4,7 @@
     "alt": "Coppey Bois de feu : une bûche détourée sur fond crème, du bon bois, du beau feu.",
     "width": 1200,
     "height": 630,
-    "sourceDigest": "bb6ce610898584269c48eee8e01e2a3fb13163ec57e40e8da8e3c8da220f1176",
+    "sourceDigest": "ec0739dd4d9d8aa15b2e955602d0ca8c6de3c30c57554611dd3ade193857a921",
     "sha256": "01053fc55f77706b2d3831f864543f415793865543e02458b628d0f28776b502"
   },
   "livraison": {
@@ -12,23 +12,23 @@
     "alt": "Coppey Bois de feu : livraison sur demande. Bigbags au dépôt.",
     "width": 1200,
     "height": 630,
-    "sourceDigest": "6cc7f6a11cab0661e084718fbbc93e6b63dfdf906589f6a481d932d1e64ef974",
+    "sourceDigest": "938b30cfb486fcb7ac550729af3372ea45301fdbbb3e99263302d97a3880db22",
     "sha256": "7fa01093617e17d2b35eb644a6c47ea2aeef717de35116b41cfd7b0539fb0588"
   },
   "formats": {
-    "file": "partage-formats-c5cc86bd2267.jpg",
-    "alt": "Coppey Bois de feu : bûches détourées pour comparer les formats de 25, 33 et 50 cm et estimer ses stères.",
+    "file": "partage-formats-807851e7b5a0.jpg",
+    "alt": "Calculateur de stères Coppey : volume de bois en 3D, dimensions et repère humain.",
     "width": 1200,
     "height": 630,
-    "sourceDigest": "19fadd4186a738b3c64e8adb13bad424f11717936951e26bee1633d2fe02c7c9",
-    "sha256": "c5cc86bd2267dc58be9a565980dca28272fdc86157890616b85c8231231f898d"
+    "sourceDigest": "e26ada91918027d1f2fac38d92acc6b022ec0160cc168d6d63bc98f444e70ba0",
+    "sha256": "807851e7b5a031a885c8d994a1d7d42912245f9cacfb2de4d37144499f3bfa58"
   },
   "faconnage": {
     "file": "partage-faconnage-936d7078cb30.jpg",
     "alt": "Coppey : façonnage sur place avec la machine et mise en bigbags.",
     "width": 1200,
     "height": 630,
-    "sourceDigest": "c9779ee25b1cba63db0ba59f6dccfbc711925c162048feb8752b895c2e22df0e",
+    "sourceDigest": "09f01e65066da36dcd0f91b76bcbc5e2dd1c1b83823619dc79ad0eb5d3892951",
     "sha256": "936d7078cb30eb50fd944fcd18d3de529b4b5cdd1d47dbe7dd4458fb6870356d"
   }
 }

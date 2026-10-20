@@ -54,3 +54,5 @@ python3 -m http.server 8816 --bind 127.0.0.1 --directory dist
 Le générateur produit toutes les pages depuis `data/entreprise.json` et ses composants communs. Le modèle de la bulle se trouve dans `scripts/contact-widget.html`. La page Stères & formats comprend le calculateur. La demande WhatsApp reprend le bois, le format, les stères et l’adresse ; elle distingue livraison, retrait et façonnage sur place. Les faits client ont été actualisés le 25 septembre 2026. Les sources de prévisualisation restent en `noindex,nofollow` ; le build publié active `index,follow` pour le domaine métier. Chaque push sur `main` publie automatiquement le contenu de `dist/`, sur le domaine principal via `scripts/build-pages.py`. Les documents de travail et médias originaux ne font pas partie du site publié.
 
 La refonte inspirée de Woodcraft du 19 octobre 2026 et le visuel détouré sont documentés dans `docs/design-woodcraft.md`.
+
+Depuis le 20 octobre 2026, le calculateur de stères est directement présent sur l’accueil et sur la page formats, avec un volume 3D ajustable et reprise de la quantité dans la demande. Fonctionnement et vérifications : `docs/calculateur-3d.md`.

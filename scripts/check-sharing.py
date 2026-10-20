@@ -13,6 +13,7 @@ for key,card in config['cards'].items():
         digest.update((root/name_part).read_bytes())
     digest.update(key.encode())
     if name: digest.update((root/f'dist/assets/{name}-1200.webp').read_bytes())
+    if key=='formats': digest.update((root/'dist/assets/calculateur-volume.svg').read_bytes())
     assert manifest[key]['sourceDigest']==digest.hexdigest(), f'Regénérer les cartes de partage : {key}'
     image=root/'dist/assets'/manifest[key]['file']
     assert hashlib.sha256(image.read_bytes()).hexdigest()==manifest[key]['sha256'], f'Image altérée : {key}'
