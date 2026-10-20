@@ -13,7 +13,7 @@ Accueil recomposé avec une vraie bûche photographiée chez Coppey et détouré
 - Exports : `dist/assets/buche-detouree-600.webp`, `dist/assets/buche-detouree-800.webp` et `dist/assets/buche-detouree-1200.webp`, alpha conservé, dimensions 600 × 400, 800 × 533 et 1200 × 800.
 - Original détouré conservé localement dans le répertoire de génération, hors publication.
 - Prompt : isoler uniquement la grande bûche fendue du premier plan ; retirer sacs, sangles, autres bois et arrière-plan ; conserver forme, veinage, face de coupe, échardes, couleurs naturelles et perspective ; transparence réelle ; ni texte ni nouvel objet. Seule une petite extrémité coupée pouvait être reconstituée.
-- Les trois formats réutilisent le même détouré comme illustration ; ce ne sont pas trois photographies de mesures différentes.
+- Le détouré est conservé pour le premier écran. Depuis le 20 octobre, les trois formats utilisent des illustrations SVG en perspective avec une section identique et une longueur proportionnelle, générées par `scripts/generate-log-illustrations.py`. Ce sont des illustrations, pas des photographies de produits mesurés.
 - Carte d’accueil WhatsApp régénérée à partir du même visuel, avec une URL dérivée de son contenu.
 
 ## Contrôles
@@ -35,3 +35,9 @@ La bûche de l’accueil flotte légèrement pendant une entrée de 4,6 secondes
 Suppression des filets horizontaux décoratifs : navigation, introductions, sections, cartes, formats, faits de séchage, FAQ et pied de page. Le bandeau récapitulatif sous l’accueil, redondant avec la navigation, est retiré. Les champs et les indicateurs de focus conservent leurs contours utiles. Les actions principales restent brunes pleines ; les actions secondaires et les anciens liens soulignés deviennent des boutons en pilule à contour brun. Les cartes cliquables conservent une seule destination et aucun lien n’est imbriqué dans un autre.
 
 40 contrôles du rendu effectif sur dix familles de pages à 320/390/768/1440 px, largeur réelle mesurée dans chaque page : aucun débordement. Vérification des séparations supprimées sur les composants concernés et captures mobile/bureau inspectées.
+
+## Illustrations des longueurs, 20 octobre 2026
+
+Trois illustrations vectorielles originales remplacent le même détouré redimensionné dans les cartes 25/33/50 cm, sur l’accueil et sur la page formats. La section reste identique, l’extrusion mesure respectivement 105/138,6/210 unités et la perspective est commune. Veinage, cernes, écorce et ombre donnent le volume sans bibliothèque 3D. Les SVG pèsent environ 6,5 Ko chacun. Sur téléphone, l’accueil présente une illustration par ligne avec la longueur en regard. Le survol soulève légèrement les bûches ; le mouvement réduit désactive cet effet.
+
+Le calculateur présente maintenant les longueurs en trois grands choix exclusifs avant les dimensions. Les exemples Petit coin/Rangement moyen/Grande réserve et le changement de vue ont été retirés à la demande de Guillermo ; la vue en volume reste fixe et se redimensionne avec les mesures.

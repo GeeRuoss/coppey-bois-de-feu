@@ -24,3 +24,15 @@ Sur mobile, la visualisation accompagne les réglages ; elle est compacte sur é
 - Génération des 17 pages, liens du build, syntaxe JS et tests consentement Analytics réussis.
 
 L’aperçu social de la page formats utilise le même SVG de volume, exporté depuis le calculateur avec l’exemple moyen. Son empreinte est contrôlée par le build ; la carte d’accueil reste la présentation générale du bois.
+
+## Simplification du 20 octobre 2026
+
+Les trois exemples et le bouton de rotation sont retirés. Le choix de longueur 25/33/50 cm devient un groupe de boutons radio visible en haut des réglages, avec chiffres agrandis et sélection brune pleine. Les calculs et le transfert vers la demande reprennent la longueur choisie. La vue isométrique est fixe ; elle grandit toujours avec les dimensions saisies. Les contrôles historiques ci-dessus décrivent la version initiale avec exemples et trois vues.
+
+## Commande en stères entiers
+
+À la demande de Guillermo, la quantité proposée est arrondie au stère entier le plus proche, avec un minimum de 1. L’estimation non arrondie à l’unité est affichée entre parenthèses, à deux décimales au plus. Le calcul du volume conserve sa précision avant l’arrondi commercial : aucun double arrondi. Quand la quantité entière exige plus de volume que le rangement saisi, une phrase indique le volume empilé à prévoir. Le formulaire reprend l’entier et l’estimation d’origine ; une saisie manuelle fractionnaire est arrondie et expliquée à la sortie du champ. Le mode façonnage conserve un volume libre, distinct d’une commande de bois livré. La silhouette et le repère 1,70 m sont retirés de l’interface et de la carte sociale.
+
+## Contrôles de la version simplifiée
+
+Accueil et page formats contrôlés aux largeurs réelles 320, 390, 768 et 1440 px : aucune image cassée, aucun débordement, choix 25/33/50 cm d’au moins 58 px de hauteur, exemples/rotation/silhouette absents. Sept cas d’arrondi vérifiés dans le navigateur : 2,5 → 3 ; 2,142857 → 2 ; 1,875 → 2 ; 1,49 → 1 ; 1,5 → 2 ; 2 → 2 ; 0,025 → 1. Le seuil 1,5 est stabilisé contre l’imprécision de virgule flottante. Indication du volume supplémentaire vérifiée pour les arrondis supérieurs. Transfert 3 stères/25 cm avec estimation 2,5 dans la demande et son message ; saisie manuelle 2,5 normalisée à 3, indication de l’arrondi conservée. En façonnage, un volume libre « 2,5 m³ » reste inchangé. Build, JS, consentement Analytics et cohérence de la carte sociale vérifiés.
